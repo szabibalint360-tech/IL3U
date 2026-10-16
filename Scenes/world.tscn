@@ -1,0 +1,68 @@
+[gd_scene format=3 uid="uid://dgkud5n4t3r1h"]
+
+[ext_resource type="Script" uid="uid://cdwh74iplk8no" path="res://Debug/DebugCanvas.cs" id="1_k7acu"]
+[ext_resource type="PackedScene" uid="uid://b00ofgaiw8kp8" path="res://Objects/Characters/player.tscn" id="2_5a7ea"]
+[ext_resource type="Texture2D" uid="uid://buykjmg2rd3ol" path="res://2D/Skyboxes/skybox-morning.png" id="2_k7acu"]
+[ext_resource type="PackedScene" uid="uid://p4f7don1aly8" path="res://3D/Kenney Industrial GLB/building-b.glb" id="3_fo5ed"]
+[ext_resource type="PackedScene" uid="uid://bg714jtxoq16c" path="res://3D/Kenney Industrial GLB/building-g.glb" id="4_5ukr8"]
+[ext_resource type="PackedScene" uid="uid://pvdkn0txdmq7" path="res://3D/Kenney Industrial GLB/building-i.glb" id="5_o06y3"]
+[ext_resource type="PackedScene" uid="uid://dtph6tb66c6rs" path="res://Objects/Interactable/Pickupable/cog_a.tscn" id="6_5ukr8"]
+[ext_resource type="PackedScene" uid="uid://d24w58b5w3uwq" path="res://Objects/Interactable/computer.tscn" id="7_o06y3"]
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_lmk2o"]
+panorama = ExtResource("2_k7acu")
+
+[sub_resource type="Sky" id="Sky_loiqj"]
+resource_local_to_scene = true
+sky_material = SubResource("PanoramaSkyMaterial_lmk2o")
+
+[sub_resource type="Environment" id="Environment_yp4wr"]
+background_mode = 2
+sky = SubResource("Sky_loiqj")
+reflected_light_source = 2
+
+[sub_resource type="BoxMesh" id="BoxMesh_loiqj"]
+size = Vector3(40, 0.5, 40)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_fo5ed"]
+data = PackedVector3Array(-20, 0.25, -20, -20, -0.25, -20, 20, -0.25, -20, -20, 0.25, 20, -20, -0.25, 20, -20, -0.25, -20, -20, -0.25, 20, 20, -0.25, 20, -20, -0.25, -20, -20, 0.25, -20, -20, 0.25, 20, -20, -0.25, -20, -20, 0.25, 20, -20, 0.25, -20, 20, 0.25, -20, -20, 0.25, 20, 20, 0.25, 20, -20, -0.25, 20, 20, -0.25, 20, 20, -0.25, -20, -20, -0.25, -20, 20, 0.25, -20, 20, -0.25, -20, 20, -0.25, 20, 20, 0.25, 20, 20, -0.25, 20, -20, -0.25, 20, 20, 0.25, -20, -20, 0.25, -20, 20, -0.25, -20, 20, 0.25, 20, -20, 0.25, 20, 20, 0.25, -20, 20, 0.25, 20, 20, 0.25, -20, 20, -0.25, 20)
+
+[node name="World" type="Node3D" unique_id=597137443]
+
+[node name="DebugCanvas" type="CanvasLayer" parent="." unique_id=1879845037]
+script = ExtResource("1_k7acu")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1176317177]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 50, 0)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=2047235451]
+environment = SubResource("Environment_yp4wr")
+
+[node name="Player" parent="." unique_id=1189951019 instance=ExtResource("2_5a7ea")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+
+[node name="Platform" type="StaticBody3D" parent="." unique_id=292889632]
+
+[node name="CSGMesh3D" type="CSGMesh3D" parent="Platform" unique_id=850545032]
+mesh = SubResource("BoxMesh_loiqj")
+
+[node name="CSGBakedCollisionShape3D" type="CollisionShape3D" parent="Platform" unique_id=880327913]
+shape = SubResource("ConcavePolygonShape3D_fo5ed")
+
+[node name="building-b2" parent="." unique_id=26103193 instance=ExtResource("3_fo5ed")]
+transform = Transform3D(8, 0, 0, 0, 8, 0, 0, 0, 8, 11, 0.25, 12)
+
+[node name="building-g2" parent="." unique_id=2107040266 instance=ExtResource("4_5ukr8")]
+transform = Transform3D(8, 0, 0, 0, 8, 0, 0, 0, 8, 13.1423435, 0.25, -14.186679)
+
+[node name="building-i2" parent="." unique_id=1799796837 instance=ExtResource("5_o06y3")]
+transform = Transform3D(8, 0, 0, 0, 8, 0, 0, 0, 8, -11.792311, 0.25, 9.613915)
+
+[node name="building-g3" parent="." unique_id=1667759565 instance=ExtResource("4_5ukr8")]
+transform = Transform3D(-3.496911e-07, 0, 8, 0, 8, 0, -8, 0, -3.496911e-07, -14.047007, 0.25000048, -13.118348)
+
+[node name="CogA" parent="." unique_id=458645313 instance=ExtResource("6_5ukr8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.3955946, 0.365, -3.2876835)
+
+[node name="Computer" parent="." unique_id=712721528 instance=ExtResource("7_o06y3")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0.4520836, 0.24999952, 8.53219)

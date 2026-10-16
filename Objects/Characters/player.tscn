@@ -1,0 +1,64 @@
+[gd_scene format=3 uid="uid://b00ofgaiw8kp8"]
+
+[ext_resource type="Script" uid="uid://s6ro7713or5c" path="res://Objects/Characters/Player.cs" id="1_y0qk3"]
+[ext_resource type="Texture2D" uid="uid://dvxceco56fbfe" path="res://2D/Icons/icons8-dot-100.png" id="2_7dynn"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_loiqj"]
+radius = 0.41497803
+height = 0.82995605
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_loiqj"]
+
+[node name="Player" type="CharacterBody3D" unique_id=1189951019]
+script = ExtResource("1_y0qk3")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1882721442]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.585022, 0)
+shape = SubResource("CapsuleShape3D_loiqj")
+
+[node name="Head" type="Node3D" parent="." unique_id=110029358]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0)
+
+[node name="InteractionRayCast" type="RayCast3D" parent="Head" unique_id=758329323]
+target_position = Vector3(0, 0, -3)
+collision_mask = 2
+
+[node name="Camera3D" type="Camera3D" parent="Head" unique_id=1292897042]
+current = true
+
+[node name="HoldPoint" type="Node3D" parent="Head" unique_id=1109829595]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.899, -0.538, -1.031)
+
+[node name="HUD" type="Control" parent="." unique_id=1471472068]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ItemPrompt" type="Label" parent="HUD" unique_id=1123033128]
+layout_mode = 0
+offset_left = 200.0
+offset_top = 650.0
+offset_right = 1080.0
+offset_bottom = 675.0
+text = "Text text a lot of text goes here just so you know"
+horizontal_alignment = 1
+
+[node name="EventPrompt" type="Label" parent="HUD" unique_id=811953481]
+layout_mode = 0
+offset_left = 750.0
+offset_top = 150.0
+offset_right = 1250.0
+offset_bottom = 175.0
+text = "Something just happened wow look here"
+horizontal_alignment = 2
+
+[node name="CenterPoint" type="Sprite2D" parent="HUD" unique_id=975702120]
+position = Vector2(640, 360)
+scale = Vector2(0.15, 0.15)
+texture = ExtResource("2_7dynn")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1833897774]
+mesh = SubResource("CapsuleMesh_loiqj")
